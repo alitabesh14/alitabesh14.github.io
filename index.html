@@ -1,2542 +1,2300 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="fa" dir="rtl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ali Tabesh | Software & Network Engineer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================
+           BASE
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Vazirmatn", Tahoma, Arial, sans-serif;
+            background: #f7f8fc;
+            color: #111827;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body.en {
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            pointer-events: none;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(124, 92, 255, 0.08),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(59, 130, 246, 0.07),
+                    transparent 28%
+                ),
+                #f7f8fc;
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+
+            background-image:
+                linear-gradient(
+                    rgba(17, 24, 39, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(17, 24, 39, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+        }
+
+        .mouse-glow {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(124, 92, 255, 0.08),
+                    transparent 65%
+                );
+
+            transform: translate(-50%, -50%);
+        }
+
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(17, 24, 39, 0.07);
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .nav-inner {
+            height: 76px;
 
-<title>ali.tabesh — Technology & Engineering</title>
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-<meta name="description"
-content="Ali Tabesh — Software Engineer, Web Designer, Network Engineer, Linux Specialist, Network Security Engineer and Mobile Repair Specialist.">
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-<style>
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.02em;
+        }
 
-/* =========================================================
-   CORE
-========================================================= */
+        .logo-mark {
+            width: 42px;
+            height: 42px;
 
-:root{
+            display: grid;
+            place-items: center;
 
-    --bg:#050509;
-    --bg2:#090914;
+            border-radius: 13px;
 
-    --purple:#9b5cff;
-    --purple2:#6d35ff;
+            color: white;
+            font-weight: 800;
 
-    --blue:#3d8bff;
-    --cyan:#56e0ff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c5cff,
+                    #3b82f6
+                );
 
-    --white:#f7f7ff;
-    --text:#d9d9e8;
-    --muted:#8d8da5;
+            box-shadow:
+                0 8px 24px rgba(92, 80, 200, 0.18);
+        }
 
-    --glass:rgba(255,255,255,.045);
-    --glass2:rgba(255,255,255,.075);
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
 
-    --border:rgba(255,255,255,.10);
+            color: #667085;
+            font-size: 14px;
+            font-weight: 600;
+        }
 
-    --shadow:
-        0 25px 90px rgba(76,36,180,.20);
+        .nav-links a {
+            position: relative;
+            transition: 0.25s ease;
+        }
 
-    --radius:24px;
+        .nav-links a::after {
+            content: "";
+            position: absolute;
 
-    --max:1200px;
-}
+            right: 0;
+            left: 0;
+            bottom: -7px;
 
+            height: 2px;
+            border-radius: 10px;
 
-/* =========================================================
-   RESET
-========================================================= */
+            background:
+                linear-gradient(
+                    90deg,
+                    #7c5cff,
+                    #3b82f6
+                );
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+            transform: scaleX(0);
+            transform-origin: center;
 
-html{
-    scroll-behavior:smooth;
-}
+            transition: 0.25s ease;
+        }
 
-body{
+        .nav-links a:hover {
+            color: #111827;
+        }
 
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(155,92,255,.13),
-            transparent 28%
-        ),
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
 
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(61,139,255,.10),
-            transparent 30%
-        ),
 
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(155,92,255,.08),
-            transparent 35%
-        ),
+        /* =========================================
+           LANGUAGE BUTTON
+        ========================================= */
 
-        linear-gradient(
-            135deg,
-            var(--bg),
-            var(--bg2)
-        );
+        .language-switch {
+            border: 1px solid rgba(17, 24, 39, 0.09);
 
-    color:var(--white);
+            background: #ffffff;
 
-    font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
+            color: #344054;
 
-    min-height:100vh;
+            padding: 9px 13px;
 
-    overflow-x:hidden;
-}
+            border-radius: 12px;
 
+            display: flex;
+            align-items: center;
+            gap: 8px;
 
-/* =========================================================
-   GRID BACKGROUND
-========================================================= */
+            cursor: pointer;
 
-body::before{
+            font-size: 13px;
+            font-weight: 600;
 
-    content:"";
+            box-shadow:
+                0 5px 18px rgba(16, 24, 40, 0.05);
 
-    position:fixed;
+            transition: 0.25s ease;
+        }
 
-    inset:0;
+        .language-switch:hover {
+            transform: translateY(-2px);
 
-    pointer-events:none;
+            border-color:
+                rgba(124, 92, 255, 0.25);
 
-    opacity:.18;
+            box-shadow:
+                0 10px 25px rgba(16, 24, 40, 0.08);
+        }
 
-    background-image:
+        .lang-icon {
+            font-size: 15px;
+        }
 
-        linear-gradient(
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        ),
+        .lang-code {
+            color: #7c5cff;
 
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.025) 1px,
-            transparent 1px
-        );
+            font-weight: 800;
+        }
 
-    background-size:
-        45px 45px;
 
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 85%
-        );
+        /* =========================================
+           HERO
+        ========================================= */
 
-    z-index:-2;
-}
+        .hero {
+            min-height: 100vh;
 
+            padding-top: 150px;
+            padding-bottom: 100px;
 
-/* =========================================================
-   MOUSE GLOW
-========================================================= */
+            display: flex;
+            align-items: center;
+        }
 
-.mouse-glow{
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
 
-    position:fixed;
+            align-items: center;
 
-    width:350px;
-    height:350px;
+            gap: 70px;
+        }
 
-    border-radius:50%;
+        .hero-text {
+            max-width: 720px;
+        }
 
-    pointer-events:none;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(155,92,255,.13),
-            transparent 65%
-        );
+            padding: 7px 13px;
 
-    transform:
-        translate(-50%,-50%);
+            margin-bottom: 22px;
 
-    z-index:-1;
+            border: 1px solid rgba(124, 92, 255, 0.15);
 
-    filter:blur(10px);
-}
+            border-radius: 999px;
 
+            background: rgba(124, 92, 255, 0.05);
 
-/* =========================================================
-   GENERAL
-========================================================= */
+            color: #6d5bd0;
 
-.container{
+            font-size: 13px;
+            font-weight: 700;
+        }
 
-    width:min(
-        var(--max),
-        92%
-    );
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
 
-    margin:auto;
-}
+            border-radius: 50%;
 
-section{
+            background: #7c5cff;
 
-    padding:
-        120px 0;
-}
+            box-shadow:
+                0 0 0 5px rgba(124, 92, 255, 0.10);
+        }
 
-a{
-    color:inherit;
-}
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 72px);
 
-.gradient{
+            line-height: 1.12;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--purple),
-            var(--blue),
-            var(--cyan)
-        );
+            letter-spacing: -0.045em;
 
-    -webkit-background-clip:text;
+            margin-bottom: 22px;
 
-    color:transparent;
-}
+            color: #101828;
+        }
 
+        body:not(.en) .hero h1 {
+            letter-spacing: 0;
+        }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+        .hero h1 span {
+            display: block;
 
-.navbar{
+            background:
+                linear-gradient(
+                    90deg,
+                    #6d4aff,
+                    #2879e8
+                );
 
-    position:fixed;
+            -webkit-background-clip: text;
+            background-clip: text;
 
-    top:18px;
+            color: transparent;
+        }
 
-    left:50%;
+        .hero-description {
+            max-width: 650px;
 
-    transform:
-        translateX(-50%);
+            color: #667085;
 
-    width:min(
-        1150px,
-        94%
-    );
+            font-size: 17px;
 
-    padding:
-        13px 18px;
+            margin-bottom: 30px;
+        }
 
-    display:flex;
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
-    align-items:center;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
 
-    justify-content:space-between;
+            padding: 12px 19px;
 
-    z-index:1000;
+            border-radius: 12px;
 
-    background:
-        rgba(8,8,16,.72);
+            font-size: 14px;
+            font-weight: 700;
 
-    backdrop-filter:
-        blur(22px);
+            transition: 0.25s ease;
 
-    border:
-        1px solid var(--border);
+            cursor: pointer;
+        }
 
-    border-radius:20px;
+        .btn-primary {
+            color: white;
 
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.35);
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #7657ff,
+                    #347fe9
+                );
 
-.logo{
+            box-shadow:
+                0 10px 25px rgba(86, 75, 190, 0.18);
+        }
 
-    font-size:22px;
+        .btn-primary:hover {
+            transform: translateY(-3px);
 
-    font-weight:900;
+            box-shadow:
+                0 15px 30px rgba(86, 75, 190, 0.24);
+        }
 
-    letter-spacing:1px;
+        .btn-secondary {
+            color: #344054;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--purple),
-            var(--blue),
-            var(--cyan)
-        );
+            background: white;
 
-    -webkit-background-clip:text;
+            border: 1px solid rgba(17, 24, 39, 0.09);
 
-    color:transparent;
-}
+            box-shadow:
+                0 5px 18px rgba(16, 24, 40, 0.04);
+        }
 
-.nav-links{
+        .btn-secondary:hover {
+            transform: translateY(-3px);
 
-    display:flex;
+            border-color:
+                rgba(124, 92, 255, 0.25);
+        }
 
-    gap:28px;
 
-    list-style:none;
-}
+        /* =========================================
+           HERO ORB
+        ========================================= */
 
-.nav-links a{
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    text-decoration:none;
+        .orb-wrapper {
+            position: relative;
 
-    color:var(--muted);
+            width: 330px;
+            height: 330px;
 
-    font-size:14px;
+            display: grid;
+            place-items: center;
+        }
 
-    transition:.3s;
-}
+        .orb {
+            position: relative;
 
-.nav-links a:hover{
+            width: 230px;
+            height: 230px;
 
-    color:white;
+            display: grid;
+            place-items: center;
 
-    text-shadow:
-        0 0 15px var(--purple);
-}
+            border-radius: 50%;
 
-.lang{
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 92, 255, 0.95),
+                    rgba(59, 130, 246, 0.95)
+                );
 
-    border:
-        1px solid var(--border);
+            box-shadow:
+                0 35px 80px rgba(83, 75, 180, 0.22),
+                inset 0 1px 1px rgba(255,255,255,0.45);
 
-    background:
-        rgba(255,255,255,.04);
+            animation: floating 5s ease-in-out infinite;
+        }
 
-    color:white;
+        .orb::before {
+            content: "";
 
-    padding:
-        8px 13px;
+            position: absolute;
 
-    border-radius:10px;
+            inset: -20px;
 
-    cursor:pointer;
+            border-radius: 50%;
 
-    transition:.3s;
-}
+            border: 1px solid rgba(124, 92, 255, 0.16);
+        }
 
-.lang:hover{
+        .orb::after {
+            content: "";
 
-    border-color:
-        var(--purple);
+            position: absolute;
 
-    box-shadow:
-        0 0 20px
-        rgba(155,92,255,.35);
-}
+            inset: -48px;
 
+            border-radius: 50%;
 
-/* =========================================================
-   HERO
-========================================================= */
+            border: 1px solid rgba(59, 130, 246, 0.08);
+        }
 
-.hero{
+        .orb-text {
+            color: white;
 
-    min-height:100vh;
+            font-size: 72px;
 
-    display:flex;
+            font-weight: 800;
 
-    align-items:center;
+            letter-spacing: -0.08em;
 
-    padding-top:130px;
-}
+            text-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
+        }
 
-.hero-grid{
+        .orb-label {
+            position: absolute;
 
-    display:grid;
+            bottom: 18px;
 
-    grid-template-columns:
-        1.25fr .75fr;
+            padding: 7px 13px;
 
-    gap:80px;
+            border-radius: 999px;
 
-    align-items:center;
-}
+            background: rgba(255,255,255,0.9);
 
-.status{
+            border: 1px solid rgba(17,24,39,0.07);
 
-    display:inline-flex;
+            color: #344054;
 
-    align-items:center;
+            font-size: 12px;
 
-    gap:9px;
+            font-weight: 700;
 
-    padding:
-        8px 14px;
+            box-shadow:
+                0 10px 25px rgba(16,24,40,0.08);
+        }
 
-    border:
-        1px solid rgba(85,223,255,.18);
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
 
-    background:
-        rgba(85,223,255,.04);
+            50% {
+                transform: translateY(-12px);
+            }
+        }
 
-    border-radius:999px;
 
-    color:
-        var(--cyan);
+        /* =========================================
+           SECTION
+        ========================================= */
 
-    font-size:13px;
+        section {
+            padding: 100px 0;
+        }
 
-    margin-bottom:25px;
-}
+        .section-header {
+            margin-bottom: 45px;
+        }
 
-.status-dot{
+        .section-kicker {
+            color: #7657ff;
 
-    width:7px;
-    height:7px;
+            font-size: 13px;
 
-    background:
-        #55e6a5;
+            font-weight: 800;
 
-    border-radius:50%;
+            margin-bottom: 8px;
+        }
 
-    box-shadow:
-        0 0 12px
-        #55e6a5;
+        .section-title {
+            font-size: clamp(30px, 4vw, 44px);
 
-    animation:
-        pulse 1.8s infinite;
-}
+            line-height: 1.25;
 
-@keyframes pulse{
+            letter-spacing: -0.035em;
 
-    0%,100%{
-        opacity:1;
-        transform:scale(1);
-    }
+            color: #101828;
+        }
 
-    50%{
-        opacity:.4;
-        transform:scale(.7);
-    }
-}
+        body:not(.en) .section-title {
+            letter-spacing: 0;
+        }
 
-.hero h1{
+        .section-description {
+            margin-top: 12px;
 
-    font-size:
-        clamp(
-            52px,
-            8vw,
-            95px
-        );
+            max-width: 680px;
 
-    line-height:
-        1;
+            color: #667085;
+        }
 
-    margin-bottom:24px;
 
-    letter-spacing:-3px;
-}
+        /* =========================================
+           ABOUT
+        ========================================= */
 
-.hero-subtitle{
+        .about-grid {
+            display: grid;
 
-    font-size:
-        clamp(
-            20px,
-            2.5vw,
-            31px
-        );
+            grid-template-columns: 1fr 1fr;
 
-    font-weight:700;
+            gap: 24px;
+        }
 
-    line-height:1.5;
+        .card {
+            background: rgba(255,255,255,0.92);
 
-    margin-bottom:22px;
+            border: 1px solid rgba(17,24,39,0.07);
 
-    min-height:48px;
-}
+            border-radius: 20px;
 
-.typing{
+            padding: 30px;
 
-    color:
-        var(--cyan);
-}
+            box-shadow:
+                0 10px 35px rgba(16,24,40,0.045);
 
-.hero-description{
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
 
-    max-width:720px;
+        .card:hover {
+            transform: translateY(-5px);
 
-    color:
-        var(--muted);
+            border-color:
+                rgba(124,92,255,0.16);
 
-    line-height:2;
+            box-shadow:
+                0 20px 45px rgba(16,24,40,0.08);
+        }
 
-    font-size:17px;
+        .card h3 {
+            font-size: 19px;
 
-    margin-bottom:32px;
-}
+            margin-bottom: 12px;
 
-.hero-buttons{
+            color: #101828;
+        }
 
-    display:flex;
+        .card p {
+            color: #667085;
 
-    gap:14px;
+            font-size: 15px;
+        }
 
-    flex-wrap:wrap;
-}
 
-.btn{
+        /* =========================================
+           STATS
+        ========================================= */
 
-    text-decoration:none;
+        .stats {
+            display: grid;
 
-    padding:
-        13px 21px;
+            grid-template-columns:
+                repeat(4, 1fr);
 
-    border-radius:13px;
+            gap: 16px;
 
-    border:
-        1px solid var(--border);
+            margin-top: 24px;
+        }
 
-    background:
-        rgba(255,255,255,.035);
+        .stat {
+            text-align: center;
 
-    transition:.3s;
+            padding: 25px 15px;
 
-    font-weight:600;
-}
+            background: white;
 
-.btn:hover{
+            border: 1px solid rgba(17,24,39,0.07);
 
-    transform:
-        translateY(-4px);
+            border-radius: 18px;
 
-    border-color:
-        rgba(155,92,255,.5);
+            box-shadow:
+                0 8px 25px rgba(16,24,40,0.035);
+        }
 
-    box-shadow:
-        0 15px 35px
-        rgba(100,70,255,.18);
-}
+        .stat-number {
+            font-size: 30px;
 
-.btn-primary{
+            font-weight: 800;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--purple),
-            var(--blue)
-        );
+            color: #7657ff;
 
-    border:none;
+            line-height: 1.2;
+        }
 
-    box-shadow:
-        0 15px 35px
-        rgba(100,70,255,.25);
-}
+        .stat-label {
+            margin-top: 6px;
 
+            font-size: 13px;
 
-/* =========================================================
-   HERO ORB
-========================================================= */
+            color: #667085;
+        }
 
-.hero-visual{
 
-    display:flex;
+        /* =========================================
+           EXPERTISE
+        ========================================= */
 
-    justify-content:center;
+        .expertise-grid {
+            display: grid;
 
-    position:relative;
-}
+            grid-template-columns:
+                repeat(3, 1fr);
 
-.orb{
+            gap: 18px;
+        }
 
-    width:330px;
+        .expertise-card {
+            padding: 26px;
 
-    height:330px;
+            background: white;
 
-    border-radius:50%;
+            border: 1px solid rgba(17,24,39,0.07);
 
-    display:flex;
+            border-radius: 18px;
 
-    align-items:center;
+            box-shadow:
+                0 8px 25px rgba(16,24,40,0.035);
 
-    justify-content:center;
+            transition: 0.3s ease;
+        }
 
-    font-size:78px;
+        .expertise-card:hover {
+            transform: translateY(-5px);
 
-    font-weight:900;
+            border-color:
+                rgba(124,92,255,0.18);
+        }
 
-    position:relative;
+        .expertise-icon {
+            width: 46px;
+            height: 46px;
 
-    background:
+            display: grid;
+            place-items: center;
 
-        radial-gradient(
-            circle at 30% 25%,
-            var(--cyan),
-            var(--blue) 32%,
-            var(--purple) 67%,
-            #130528 100%
-        );
+            margin-bottom: 16px;
 
-    box-shadow:
+            border-radius: 13px;
 
-        0 0 60px
-        rgba(155,92,255,.35),
+            color: #7657ff;
 
-        inset 0 0 50px
-        rgba(255,255,255,.12);
+            background:
+                rgba(124,92,255,0.08);
 
-    animation:
-        float 6s ease-in-out infinite;
-}
+            font-size: 20px;
+        }
 
-.orb::before{
+        .expertise-card h3 {
+            margin-bottom: 8px;
 
-    content:"";
+            color: #101828;
 
-    position:absolute;
+            font-size: 17px;
+        }
 
-    inset:-25px;
+        .expertise-card p {
+            color: #667085;
 
-    border-radius:50%;
+            font-size: 14px;
+        }
 
-    border:
-        1px solid
-        rgba(155,92,255,.2);
 
-    animation:
-        rotate 15s linear infinite;
-}
+        /* =========================================
+           SKILLS
+        ========================================= */
 
-.orb::after{
+        .skills {
+            display: flex;
 
-    content:"";
+            flex-wrap: wrap;
 
-    position:absolute;
+            gap: 10px;
+        }
 
-    inset:-50px;
+        .skill {
+            padding: 9px 14px;
 
-    border-radius:50%;
+            border-radius: 999px;
 
-    border:
-        1px dashed
-        rgba(85,223,255,.12);
+            background: white;
 
-    animation:
-        rotate 25s linear infinite reverse;
-}
+            border: 1px solid rgba(17,24,39,0.08);
 
-@keyframes float{
+            color: #475467;
 
-    0%,100%{
-        transform:
-            translateY(0);
-    }
+            font-size: 13px;
 
-    50%{
-        transform:
-            translateY(-18px);
-    }
-}
+            font-weight: 600;
 
-@keyframes rotate{
+            transition: 0.25s ease;
+        }
 
-    to{
-        transform:
-            rotate(360deg);
-    }
-}
+        .skill:hover {
+            transform: translateY(-2px);
 
+            color: #7657ff;
 
-/* =========================================================
-   SECTION HEADER
-========================================================= */
+            border-color:
+                rgba(124,92,255,0.25);
 
-.section-header{
+            background:
+                rgba(124,92,255,0.035);
+        }
 
-    text-align:center;
 
-    margin-bottom:55px;
-}
+        /* =========================================
+           PROJECTS
+        ========================================= */
 
-.eyebrow{
+        .projects-card {
+            position: relative;
 
-    color:
-        var(--purple);
+            overflow: hidden;
 
-    text-transform:
-        uppercase;
+            padding: 42px;
 
-    letter-spacing:
-        3px;
+            text-align: center;
 
-    font-size:
-        11px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124,92,255,0.045),
+                    rgba(59,130,246,0.035)
+                );
 
-    font-weight:
-        800;
+            border: 1px solid rgba(124,92,255,0.12);
 
-    margin-bottom:
-        12px;
-}
+            border-radius: 22px;
+        }
 
-.section-header h2{
+        .lock-icon {
+            font-size: 38px;
 
-    font-size:
-        clamp(
-            34px,
-            5vw,
-            52px
-        );
+            margin-bottom: 15px;
+        }
 
-    margin-bottom:
-        12px;
-}
+        .projects-card h3 {
+            margin-bottom: 12px;
 
-.section-header p{
+            font-size: 21px;
 
-    color:
-        var(--muted);
+            color: #101828;
+        }
 
-    max-width:
-        650px;
+        .projects-card p {
+            max-width: 720px;
 
-    margin:auto;
+            margin: auto;
 
-    line-height:
-        1.8;
-}
+            color: #667085;
 
+            font-size: 14px;
+        }
 
-/* =========================================================
-   ABOUT
-========================================================= */
+        .blurred-line {
+            margin-top: 25px;
 
-.about-grid{
+            height: 9px;
 
-    display:grid;
+            border-radius: 99px;
 
-    grid-template-columns:
-        1fr 1fr;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(124,92,255,0.10),
+                    rgba(59,130,246,0.08),
+                    rgba(124,92,255,0.10)
+                );
 
-    gap:25px;
-}
+            filter: blur(2px);
+        }
 
-.glass{
 
-    background:
-        var(--glass);
+        /* =========================================
+           CONTACT
+        ========================================= */
 
-    border:
-        1px solid var(--border);
+        .contact-grid {
+            display: grid;
 
-    border-radius:
-        var(--radius);
+            grid-template-columns:
+                1fr 1fr;
 
-    backdrop-filter:
-        blur(18px);
+            gap: 20px;
+        }
 
-    box-shadow:
-        var(--shadow);
+        .contact-link {
+            display: flex;
 
-    transition:
-        .35s;
-}
+            align-items: center;
 
-.glass:hover{
+            gap: 15px;
 
-    transform:
-        translateY(-6px);
+            padding: 20px;
 
-    border-color:
-        rgba(155,92,255,.28);
-}
+            background: white;
 
-.about-card{
+            border: 1px solid rgba(17,24,39,0.07);
 
-    padding:
-        35px;
-}
+            border-radius: 16px;
 
-.about-card h3{
+            box-shadow:
+                0 8px 25px rgba(16,24,40,0.035);
 
-    font-size:
-        24px;
+            transition: 0.25s ease;
+        }
 
-    margin-bottom:
-        17px;
-}
+        .contact-link:hover {
+            transform: translateY(-4px);
 
-.about-card p{
+            border-color:
+                rgba(124,92,255,0.20);
+        }
 
-    color:
-        var(--muted);
+        .contact-icon {
+            width: 45px;
+            height: 45px;
 
-    line-height:
-        2;
+            display: grid;
+            place-items: center;
 
-    font-size:
-        16px;
-}
+            border-radius: 12px;
 
+            background:
+                rgba(124,92,255,0.08);
 
-/* =========================================================
-   STATS
-========================================================= */
+            color: #7657ff;
 
-.stats{
+            font-size: 19px;
+        }
 
-    display:grid;
+        .contact-title {
+            font-weight: 700;
 
-    grid-template-columns:
-        repeat(2,1fr);
+            color: #101828;
+        }
 
-    gap:15px;
-}
+        .contact-value {
+            font-size: 13px;
 
-.stat{
+            color: #667085;
 
-    padding:
-        27px;
+            direction: ltr;
 
-    text-align:center;
-}
+            text-align: left;
+        }
 
-.stat-number{
 
-    font-size:
-        38px;
+        /* =========================================
+           FOOTER
+        ========================================= */
 
-    font-weight:
-        900;
+        footer {
+            padding: 35px 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--purple),
-            var(--cyan)
-        );
+            border-top:
+                1px solid rgba(17,24,39,0.07);
 
-    -webkit-background-clip:text;
+            color: #98a2b3;
 
-    color:transparent;
+            font-size: 13px;
 
-    margin-bottom:
-        6px;
-}
+            text-align: center;
+        }
 
-.stat-label{
 
-    color:
-        var(--muted);
+        /* =========================================
+           REVEAL ANIMATION
+        ========================================= */
 
-    font-size:
-        13px;
-}
+        .reveal {
+            opacity: 0;
 
+            transform: translateY(25px);
 
-/* =========================================================
-   EXPERTISE
-========================================================= */
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+        }
 
-.expertise-grid{
+        .reveal.visible {
+            opacity: 1;
 
-    display:grid;
+            transform: translateY(0);
+        }
 
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(250px,1fr)
-        );
 
-    gap:18px;
-}
+        /* =========================================
+           MOBILE
+        ========================================= */
 
-.expertise{
+        @media (max-width: 900px) {
 
-    padding:
-        30px;
-}
+            .hero-content {
+                grid-template-columns: 1fr;
 
-.icon{
+                text-align: center;
 
-    width:48px;
-    height:48px;
+                gap: 45px;
+            }
 
-    display:flex;
+            .hero-text {
+                margin: auto;
+            }
 
-    align-items:center;
-    justify-content:center;
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-    border-radius:14px;
+            .hero-buttons {
+                justify-content: center;
+            }
 
-    margin-bottom:20px;
+            .hero-visual {
+                order: -1;
+            }
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(155,92,255,.2),
-            rgba(61,139,255,.12)
-        );
+            .orb-wrapper {
+                width: 250px;
+                height: 250px;
+            }
 
-    border:
-        1px solid
-        rgba(155,92,255,.18);
+            .orb {
+                width: 175px;
+                height: 175px;
+            }
 
-    font-size:22px;
-}
+            .orb-text {
+                font-size: 55px;
+            }
 
-.expertise h3{
+            .nav-links {
+                display: none;
+            }
 
-    margin-bottom:
-        10px;
-}
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
 
-.expertise p{
+            .expertise-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
 
-    color:
-        var(--muted);
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
 
-    line-height:
-        1.8;
 
-    font-size:
-        14px;
-}
+        @media (max-width: 600px) {
 
+            .container {
+                width:
+                    min(100% - 28px, 1120px);
+            }
 
-/* =========================================================
-   SKILLS
-========================================================= */
+            .nav-inner {
+                height: 68px;
+            }
 
-.skills{
+            .logo span {
+                display: none;
+            }
 
-    display:flex;
+            .language-switch {
+                padding: 8px 10px;
+            }
 
-    flex-wrap:wrap;
+            .hero {
+                padding-top: 125px;
+            }
 
-    justify-content:center;
+            .hero h1 {
+                font-size: 42px;
+            }
 
-    gap:11px;
-}
+            .hero-description {
+                font-size: 15px;
+            }
 
-.skill{
+            section {
+                padding: 75px 0;
+            }
 
-    padding:
-        11px 16px;
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
 
-    border:
-        1px solid var(--border);
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
 
-    background:
-        var(--glass);
+            .card {
+                padding: 23px;
+            }
 
-    border-radius:
-        999px;
+            .projects-card {
+                padding: 30px 20px;
+            }
+        }
 
-    color:
-        var(--text);
-
-    font-size:
-        13px;
-
-    transition:
-        .3s;
-}
-
-.skill:hover{
-
-    color:white;
-
-    border-color:
-        var(--purple);
-
-    background:
-        rgba(155,92,255,.09);
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 0 20px
-        rgba(155,92,255,.15);
-}
-
-
-/* =========================================================
-   CLASSIFIED PROJECTS
-========================================================= */
-
-.projects-wrapper{
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:
-        var(--radius);
-}
-
-.projects-content{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-
-    filter:
-        blur(9px);
-
-    transform:
-        scale(1.02);
-
-    user-select:none;
-
-    pointer-events:none;
-
-    opacity:.65;
-}
-
-.project-card{
-
-    padding:
-        30px;
-
-    min-height:
-        230px;
-
-    background:
-        var(--glass);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-}
-
-.project-card h3{
-
-    margin-bottom:
-        12px;
-}
-
-.project-card p{
-
-    color:
-        var(--muted);
-
-    line-height:
-        1.8;
-}
-
-.classified-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    padding:30px;
-
-    background:
-        rgba(5,5,12,.54);
-
-    backdrop-filter:
-        blur(3px);
-
-    border:
-        1px solid
-        rgba(155,92,255,.18);
-
-    border-radius:
-        var(--radius);
-}
-
-.lock{
-
-    width:70px;
-    height:70px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:20px;
-
-    margin-bottom:20px;
-
-    font-size:28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(155,92,255,.18),
-            rgba(61,139,255,.12)
-        );
-
-    border:
-        1px solid
-        rgba(155,92,255,.25);
-
-    box-shadow:
-        0 0 35px
-        rgba(155,92,255,.12);
-}
-
-.classified-overlay h3{
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        12px;
-}
-
-.classified-overlay p{
-
-    max-width:
-        720px;
-
-    color:
-        var(--muted);
-
-    line-height:
-        1.9;
-
-    font-size:
-        14px;
-}
-
-.classified-tag{
-
-    margin-top:
-        18px;
-
-    padding:
-        7px 13px;
-
-    border-radius:
-        999px;
-
-    color:
-        var(--cyan);
-
-    border:
-        1px solid
-        rgba(85,223,255,.2);
-
-    background:
-        rgba(85,223,255,.05);
-
-    font-size:
-        11px;
-
-    letter-spacing:
-        1.5px;
-}
-
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact{
-
-    max-width:
-        800px;
-
-    margin:auto;
-
-    text-align:center;
-
-    padding:
-        55px 35px;
-}
-
-.contact p{
-
-    color:
-        var(--muted);
-
-    line-height:
-        1.9;
-
-    margin-bottom:
-        30px;
-}
-
-.contact-buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:13px;
-
-    flex-wrap:wrap;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-
-    padding:
-        35px 0;
-
-    border-top:
-        1px solid var(--border);
-
-    text-align:center;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-}
-
-
-/* =========================================================
-   REVEAL
-========================================================= */
-
-.reveal{
-
-    opacity:0;
-
-    transform:
-        translateY(30px);
-
-    transition:
-        1s ease;
-}
-
-.reveal.active{
-
-    opacity:1;
-
-    transform:
-        translateY(0);
-}
-
-
-/* =========================================================
-   RTL
-========================================================= */
-
-body.fa{
-
-    font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-}
-
-body.fa .hero h1{
-
-    letter-spacing:
-        0;
-}
-
-body.fa .eyebrow{
-
-    letter-spacing:
-        1px;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:850px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero{
-        padding-top:150px;
-    }
-
-    .hero-grid{
-
-        grid-template-columns:1fr;
-
-        text-align:center;
-    }
-
-    .hero-description{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .hero-buttons{
-        justify-content:center;
-    }
-
-    .hero-visual{
-        margin-top:40px;
-    }
-
-    .orb{
-
-        width:230px;
-        height:230px;
-
-        font-size:55px;
-    }
-
-    .about-grid{
-        grid-template-columns:1fr;
-    }
-
-    .projects-content{
-        grid-template-columns:1fr;
-    }
-
-    section{
-        padding:90px 0;
-    }
-
-}
-
-@media(max-width:500px){
-
-    .hero h1{
-        font-size:50px;
-    }
-
-    .hero-subtitle{
-        font-size:19px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .about-card{
-        padding:25px;
-    }
-
-}
-
-
-/* =========================================================
-   SELECTION
-========================================================= */
-
-::selection{
-
-    background:
-        var(--purple);
-
-    color:white;
-}
-
-</style>
-
+    </style>
 </head>
-
 
 <body>
 
-
-<div class="mouse-glow"></div>
-
-
-<!-- ======================================================
-     NAVBAR
-====================================================== -->
-
-<nav class="navbar">
-
-    <div class="logo">
-        ali.tabesh
+    <!-- Background -->
+    <div class="background">
+        <div class="grid"></div>
     </div>
 
-    <ul class="nav-links">
+    <div class="mouse-glow" id="mouseGlow"></div>
 
-        <li>
-            <a href="#about"
-               data-en="About"
-               data-fa="درباره من">
-                About
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav class="navbar">
+
+        <div class="container nav-inner">
+
+            <a href="#home" class="logo">
+
+                <div class="logo-mark">
+                    AT
+                </div>
+
+                <span>
+                    ali.tabesh
+                </span>
+
             </a>
-        </li>
 
-        <li>
-            <a href="#expertise"
-               data-en="Expertise"
-               data-fa="تخصص‌ها">
-                Expertise
-            </a>
-        </li>
 
-        <li>
-            <a href="#skills"
-               data-en="Skills"
-               data-fa="مهارت‌ها">
-                Skills
-            </a>
-        </li>
-
-        <li>
-            <a href="#projects"
-               data-en="Projects"
-               data-fa="پروژه‌ها">
-                Projects
-            </a>
-        </li>
-
-        <li>
-            <a href="#contact"
-               data-en="Contact"
-               data-fa="تماس">
-                Contact
-            </a>
-        </li>
-
-    </ul>
-
-    <button
-        class="lang"
-        id="langBtn">
-        FA
-    </button>
-
-</nav>
-
-
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
-<section class="hero">
-
-<div class="container">
-
-<div class="hero-grid">
-
-
-<div>
-
-    <div class="status">
-
-        <span class="status-dot"></span>
-
-        <span
-            data-en="Available for selected opportunities"
-            data-fa="آماده همکاری در پروژه‌های منتخب">
-            Available for selected opportunities
-        </span>
-
-    </div>
-
-
-    <h1>
-
-        <span class="gradient">
-            ali.tabesh
-        </span>
-
-    </h1>
-
-
-    <div class="hero-subtitle">
-
-        <span
-            class="typing"
-            id="typing">
-        </span>
-
-    </div>
-
-
-    <p
-        class="hero-description"
-        data-en="I build, design, troubleshoot and secure technology systems across software, web, networking, Linux and hardware."
-        data-fa="در حوزه نرم‌افزار، طراحی وب، شبکه، لینوکس، امنیت و سخت‌افزار فعالیت می‌کنم؛ از ساخت و طراحی تا عیب‌یابی و ایمن‌سازی.">
-
-        I build, design, troubleshoot and secure
-        technology systems across software, web,
-        networking, Linux and hardware.
-
-    </p>
-
-
-    <div class="hero-buttons">
-
-        <a
-            href="#expertise"
-            class="btn btn-primary"
-            data-en="Explore Expertise"
-            data-fa="مشاهده تخصص‌ها">
-
-            Explore Expertise
-
-        </a>
-
-
-        <a
-            href="#contact"
-            class="btn"
-            data-en="Contact Me"
-            data-fa="ارتباط با من">
-
-            Contact Me
-
-        </a>
-
-    </div>
-
-</div>
-
-
-
-<div class="hero-visual">
-
-    <div class="orb">
-        AT
-    </div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     ABOUT
-====================================================== -->
-
-<section id="about" class="reveal">
-
-<div class="container">
-
-<div class="section-header">
-
-    <div class="eyebrow">
-        PROFILE
-    </div>
-
-    <h2
-        data-en="More than a title."
-        data-fa="فراتر از یک عنوان.">
-
-        More than a title.
-
-    </h2>
-
-    <p
-        data-en="A multidisciplinary technology profile."
-        data-fa="یک پروفایل چندتخصصی در دنیای فناوری.">
-
-        A multidisciplinary technology profile.
-
-    </p>
-
-</div>
-
-
-
-<div class="about-grid">
-
-
-<div class="glass about-card">
-
-    <h3
-        data-en="About Me"
-        data-fa="درباره من">
-
-        About Me
-
-    </h3>
-
-    <p
-        data-en="I'm Ali Tabesh, interested in software engineering, modern web design, computer networks, Linux, cybersecurity, network security and hardware troubleshooting. I enjoy understanding how systems work and finding practical solutions to technical problems."
-        data-fa="من علی تابش هستم و به مهندسی نرم‌افزار، طراحی وب مدرن، شبکه‌های کامپیوتری، لینوکس، امنیت سایبری، امنیت شبکه و عیب‌یابی سخت‌افزار علاقه دارم. علاقه من این است که سازوکار سیستم‌ها را درک کنم و برای مشکلات فنی راه‌حل‌های عملی پیدا کنم.">
-
-        I'm Ali Tabesh, interested in software engineering,
-        modern web design, computer networks, Linux,
-        cybersecurity, network security and hardware
-        troubleshooting.
-
-    </p>
-
-</div>
-
-
-
-<div class="stats">
-
-    <div class="glass stat">
-
-        <div class="stat-number">
-            01
-        </div>
-
-        <div
-            class="stat-label"
-            data-en="Multidisciplinary Profile"
-            data-fa="پروفایل چندتخصصی">
-
-            Multidisciplinary Profile
+            <div class="nav-links">
+
+                <a href="#about"
+                   data-fa="درباره من"
+                   data-en="About">
+                    درباره من
+                </a>
+
+                <a href="#expertise"
+                   data-fa="تخصص‌ها"
+                   data-en="Expertise">
+                    تخصص‌ها
+                </a>
+
+                <a href="#skills"
+                   data-fa="مهارت‌ها"
+                   data-en="Skills">
+                    مهارت‌ها
+                </a>
+
+                <a href="#projects"
+                   data-fa="پروژه‌ها"
+                   data-en="Projects">
+                    پروژه‌ها
+                </a>
+
+                <a href="#contact"
+                   data-fa="تماس"
+                   data-en="Contact">
+                    تماس
+                </a>
+
+            </div>
+
+
+            <button
+                class="language-switch"
+                id="langBtn"
+                type="button"
+            >
+
+                <span class="lang-icon">
+                    ◐
+                </span>
+
+                <span
+                    id="langLabel"
+                    data-fa="تغییر زبان"
+                    data-en="Language">
+                    تغییر زبان
+                </span>
+
+                <strong
+                    class="lang-code"
+                    id="langCode">
+                    EN
+                </strong>
+
+            </button>
 
         </div>
 
-    </div>
+    </nav>
 
 
-    <div class="glass stat">
+    <!-- =========================================
+         HERO
+    ========================================= -->
 
-        <div class="stat-number">
-            24/7
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text reveal">
+
+                    <div class="eyebrow">
+
+                        <span class="eyebrow-dot"></span>
+
+                        <span
+                            data-fa="مهندسی نرم‌افزار و زیرساخت"
+                            data-en="Software & Infrastructure Engineering">
+                            مهندسی نرم‌افزار و زیرساخت
+                        </span>
+
+                    </div>
+
+
+                    <h1>
+
+                        <span>ali.tabesh</span>
+
+                        <span
+                            id="typingText">
+                            Software Engineer.
+                        </span>
+
+                    </h1>
+
+
+                    <p
+                        class="hero-description"
+                        data-fa="علی تابش هستم، چه کمکی از دستم برمیاد؟"
+                        data-en="I'm Ali Tabesh. How can I help you?">
+                        علی تابش هستم، چه کمکی از دستم برمیاد؟
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#about"
+                            class="btn btn-primary"
+                            data-fa="بیشتر درباره من"
+                            data-en="More About Me">
+                            بیشتر درباره من
+                        </a>
+
+                        <a
+                            href="#contact"
+                            class="btn btn-secondary"
+                            data-fa="ارتباط با من"
+                            data-en="Contact Me">
+                            ارتباط با من
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual reveal">
+
+                    <div class="orb-wrapper">
+
+                        <div class="orb">
+
+                            <div class="orb-text">
+                                AT
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="orb-label"
+                            data-fa="Software • Network • Linux"
+                            data-en="Software • Network • Linux">
+                            Software • Network • Linux
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             ABOUT
+        ========================================= -->
+
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div
+                        class="section-kicker"
+                        data-fa="درباره من"
+                        data-en="ABOUT ME">
+                        درباره من
+                    </div>
+
+                    <h2
+                        class="section-title"
+                        data-fa="ساختن، یادگیری و حل مسئله"
+                        data-en="Building, Learning & Solving Problems">
+                        ساختن، یادگیری و حل مسئله
+                    </h2>
+
+                    <p
+                        class="section-description"
+                        data-fa="تمرکز من روی فناوری، زیرساخت، شبکه، لینوکس، توسعه نرم‌افزار و امنیت است."
+                        data-en="My focus is on technology, infrastructure, networking, Linux, software development, and security.">
+                        تمرکز من روی فناوری، زیرساخت، شبکه، لینوکس، توسعه نرم‌افزار و امنیت است.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="card reveal">
+
+                        <h3
+                            data-fa="رویکرد من"
+                            data-en="My Approach">
+                            رویکرد من
+                        </h3>
+
+                        <p
+                            data-fa="تلاش می‌کنم مسائل فنی را به شکل دقیق، ساده و قابل اجرا بررسی کنم و همیشه در حال یادگیری و توسعه مهارت‌های خودم هستم."
+                            data-en="I try to approach technical problems in a precise, practical, and understandable way while continuously learning and improving my skills.">
+                            تلاش می‌کنم مسائل فنی را به شکل دقیق، ساده و قابل اجرا بررسی کنم و همیشه در حال یادگیری و توسعه مهارت‌های خودم هستم.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card reveal">
+
+                        <h3
+                            data-fa="حوزه‌های کاری"
+                            data-en="Areas of Work">
+                            حوزه‌های کاری
+                        </h3>
+
+                        <p
+                            data-fa="توسعه نرم‌افزار، طراحی وب، شبکه، لینوکس، امنیت شبکه، زیرساخت، عیب‌یابی سخت‌افزار و تعمیرات موبایل."
+                            data-en="Software development, web design, networking, Linux, network security, infrastructure, hardware troubleshooting, and mobile repair.">
+                            توسعه نرم‌افزار، طراحی وب، شبکه، لینوکس، امنیت شبکه، زیرساخت، عیب‌یابی سخت‌افزار و تعمیرات موبایل.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat reveal">
+
+                        <div class="stat-number">
+                            01
+                        </div>
+
+                        <div
+                            class="stat-label"
+                            data-fa="تمرکز"
+                            data-en="Focus">
+                            تمرکز
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat reveal">
+
+                        <div class="stat-number">
+                            24/7
+                        </div>
+
+                        <div
+                            class="stat-label"
+                            data-fa="یادگیری"
+                            data-en="Learning">
+                            یادگیری
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat reveal">
+
+                        <div class="stat-number">
+                            ∞
+                        </div>
+
+                        <div
+                            class="stat-label"
+                            data-fa="کنجکاوی"
+                            data-en="Curiosity">
+                            کنجکاوی
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat reveal">
+
+                        <div class="stat-number">
+                            AT
+                        </div>
+
+                        <div
+                            class="stat-label"
+                            data-fa="هویت"
+                            data-en="Identity">
+                            هویت
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+                <!-- =========================================
+             EXPERTISE
+        ========================================= -->
+
+        <section id="expertise">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div
+                        class="section-kicker"
+                        data-fa="تخصص‌ها"
+                        data-en="EXPERTISE">
+                        تخصص‌ها
+                    </div>
+
+                    <h2
+                        class="section-title"
+                        data-fa="حوزه‌هایی که روی آن‌ها تمرکز دارم"
+                        data-en="Areas I Focus On">
+                        حوزه‌هایی که روی آن‌ها تمرکز دارم
+                    </h2>
+
+                    <p
+                        class="section-description"
+                        data-fa="ترکیبی از نرم‌افزار، شبکه، سیستم‌عامل، امنیت و سخت‌افزار."
+                        data-en="A combination of software, networking, operating systems, security, and hardware.">
+                        ترکیبی از نرم‌افزار، شبکه، سیستم‌عامل، امنیت و سخت‌افزار.
+                    </p>
+
+                </div>
+
+
+                <div class="expertise-grid">
+
+                    <!-- Software -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            &lt;/&gt;
+                        </div>
+
+                        <h3
+                            data-fa="نرم‌افزار و وب"
+                            data-en="Software & Web">
+                            نرم‌افزار و وب
+                        </h3>
+
+                        <p
+                            data-fa="توسعه نرم‌افزار، طراحی وب، HTML، CSS، JavaScript و Python."
+                            data-en="Software development, web design, HTML, CSS, JavaScript, and Python.">
+                            توسعه نرم‌افزار، طراحی وب، HTML، CSS، JavaScript و Python.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Networking -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            ◈
+                        </div>
+
+                        <h3
+                            data-fa="شبکه"
+                            data-en="Networking">
+                            شبکه
+                        </h3>
+
+                        <p
+                            data-fa="TCP/IP، DNS، DHCP، VLAN، Routing، Switching و عیب‌یابی شبکه."
+                            data-en="TCP/IP, DNS, DHCP, VLAN, routing, switching, and network troubleshooting.">
+                            TCP/IP، DNS، DHCP، VLAN، Routing، Switching و عیب‌یابی شبکه.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Linux -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            $
+                        </div>
+
+                        <h3
+                            data-fa="لینوکس"
+                            data-en="Linux">
+                            لینوکس
+                        </h3>
+
+                        <p
+                            data-fa="مدیریت سیستم، Bash، SSH، سرویس‌ها، دسترسی‌ها و ابزارهای خط فرمان."
+                            data-en="System administration, Bash, SSH, services, permissions, and command-line tools.">
+                            مدیریت سیستم، Bash، SSH، سرویس‌ها، دسترسی‌ها و ابزارهای خط فرمان.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Cybersecurity -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            ◉
+                        </div>
+
+                        <h3
+                            data-fa="امنیت سایبری"
+                            data-en="Cybersecurity">
+                            امنیت سایبری
+                        </h3>
+
+                        <p
+                            data-fa="امنیت شبکه، Web Security، بررسی سرویس‌ها و آشنایی با مفاهیم امنیتی."
+                            data-en="Network security, web security, service analysis, and security fundamentals.">
+                            امنیت شبکه، Web Security، بررسی سرویس‌ها و آشنایی با مفاهیم امنیتی.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Hardware -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            ⚙
+                        </div>
+
+                        <h3
+                            data-fa="سخت‌افزار و تعمیرات"
+                            data-en="Hardware & Repair">
+                            سخت‌افزار و تعمیرات
+                        </h3>
+
+                        <p
+                            data-fa="عیب‌یابی سخت‌افزار، تعمیرات کامپیوتر و تعمیرات موبایل."
+                            data-en="Hardware troubleshooting, computer repair, and mobile repair.">
+                            عیب‌یابی سخت‌افزار، تعمیرات کامپیوتر و تعمیرات موبایل.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Infrastructure -->
+
+                    <div class="expertise-card reveal">
+
+                        <div class="expertise-icon">
+                            ▣
+                        </div>
+
+                        <h3
+                            data-fa="زیرساخت"
+                            data-en="Infrastructure">
+                            زیرساخت
+                        </h3>
+
+                        <p
+                            data-fa="Windows، VMware، Linux، مدیریت سیستم و سرویس‌های زیرساختی."
+                            data-en="Windows, VMware, Linux, system administration, and infrastructure services.">
+                            Windows، VMware، Linux، مدیریت سیستم و سرویس‌های زیرساختی.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             SKILLS
+        ========================================= -->
+
+        <section id="skills">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div
+                        class="section-kicker"
+                        data-fa="مهارت‌ها"
+                        data-en="SKILLS">
+                        مهارت‌ها
+                    </div>
+
+                    <h2
+                        class="section-title"
+                        data-fa="ابزارها و فناوری‌ها"
+                        data-en="Tools & Technologies">
+                        ابزارها و فناوری‌ها
+                    </h2>
+
+                    <p
+                        class="section-description"
+                        data-fa="مجموعه‌ای از فناوری‌ها و مهارت‌هایی که روی آن‌ها کار کرده‌ام یا در حال توسعه آن‌ها هستم."
+                        data-en="A collection of technologies and skills I have worked with or am currently developing.">
+                        مجموعه‌ای از فناوری‌ها و مهارت‌هایی که روی آن‌ها کار کرده‌ام یا در حال توسعه آن‌ها هستم.
+                    </p>
+
+                </div>
+
+
+                <div class="skills reveal">
+
+                    <span class="skill">HTML</span>
+
+                    <span class="skill">CSS</span>
+
+                    <span class="skill">JavaScript</span>
+
+                    <span class="skill">Python</span>
+
+                    <span class="skill">Linux</span>
+
+                    <span class="skill">Bash</span>
+
+                    <span class="skill">SSH</span>
+
+                    <span class="skill">TCP/IP</span>
+
+                    <span class="skill">DNS</span>
+
+                    <span class="skill">DHCP</span>
+
+                    <span class="skill">VLAN</span>
+
+                    <span class="skill">Routing</span>
+
+                    <span class="skill">Switching</span>
+
+                    <span class="skill">Git</span>
+
+                    <span class="skill">GitHub</span>
+
+                    <span class="skill">Cybersecurity</span>
+
+                    <span class="skill">Network Security</span>
+
+                    <span class="skill">Web Security</span>
+
+                    <span class="skill">Windows</span>
+
+                    <span class="skill">VMware</span>
+
+                    <span class="skill">System Administration</span>
+
+                    <span class="skill">Hardware Troubleshooting</span>
+
+                    <span class="skill">
+                        Mobile Repair
+                    </span>
+
+                    <span class="skill">
+                        Mobile Diagnostics
+                    </span>
+
+                    <span class="skill">
+                        Web Design
+                    </span>
+
+                    <span class="skill">
+                        Responsive Design
+                    </span>
+
+                    <span class="skill">
+                        UI/UX
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROJECTS
+        ========================================= -->
+
+        <section id="projects">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div
+                        class="section-kicker"
+                        data-fa="پروژه‌ها"
+                        data-en="PROJECTS">
+                        پروژه‌ها
+                    </div>
+
+                    <h2
+                        class="section-title"
+                        data-fa="برخی پروژه‌ها عمومی نیستند"
+                        data-en="Some Projects Are Not Public">
+                        برخی پروژه‌ها عمومی نیستند
+                    </h2>
+
+                    <p
+                        class="section-description"
+                        data-fa="به دلیل محدودیت‌های مالکیت و محرمانگی، جزئیات برخی پروژه‌ها منتشر نمی‌شود."
+                        data-en="Due to ownership and confidentiality restrictions, details of selected projects are not publicly disclosed.">
+                        به دلیل محدودیت‌های مالکیت و محرمانگی، جزئیات برخی پروژه‌ها منتشر نمی‌شود.
+                    </p>
+
+                </div>
+
+
+                <div class="projects-card reveal">
+
+                    <div class="lock-icon">
+                        🔒
+                    </div>
+
+                    <h3
+                        data-fa="پروژه‌های محدود و محرمانه"
+                        data-en="Restricted & Confidential Projects">
+                        پروژه‌های محدود و محرمانه
+                    </h3>
+
+                    <p
+                        data-fa="اطلاعات و جزئیات برخی از پروژه‌ها عمداً منتشر نمی‌شود. محتوای این پروژه‌ها متعلق به صاحبان پروژه و سازمان‌های دولتی مربوطه است و مجوز انتشار عمومی آن‌ها وجود ندارد."
+                        data-en="Detailed information about selected projects is intentionally withheld. The projects and their contents belong to their respective owners and government organizations, and public disclosure is not authorized.">
+                        اطلاعات و جزئیات برخی از پروژه‌ها عمداً منتشر نمی‌شود.
+                        محتوای این پروژه‌ها متعلق به صاحبان پروژه و سازمان‌های دولتی مربوطه است
+                        و مجوز انتشار عمومی آن‌ها وجود ندارد.
+                    </p>
+
+                    <div class="blurred-line"></div>
+
+                    <div
+                        class="blurred-line"
+                        style="width: 72%; margin-left: auto; margin-right: auto;">
+                    </div>
+
+                    <div
+                        class="blurred-line"
+                        style="width: 48%; margin-left: auto; margin-right: auto;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             CONTACT
+        ========================================= -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-header reveal">
+
+                    <div
+                        class="section-kicker"
+                        data-fa="ارتباط"
+                        data-en="CONTACT">
+                        ارتباط
+                    </div>
+
+                    <h2
+                        class="section-title"
+                        data-fa="چطور می‌توانیم در ارتباط باشیم؟"
+                        data-en="How Can We Connect?">
+                        چطور می‌توانیم در ارتباط باشیم؟
+                    </h2>
+
+                    <p
+                        class="section-description"
+                        data-fa="برای ارتباط می‌توانید از طریق تلگرام با من در تماس باشید."
+                        data-en="You can contact me through Telegram.">
+                        برای ارتباط می‌توانید از طریق تلگرام با من در تماس باشید.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-grid">
+
+
+                    <!-- Telegram -->
+
+                    <a
+                        class="contact-link reveal"
+                        href="https://t.me/achcr.soltan"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        <div class="contact-icon">
+                            ✈
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="contact-title"
+                                data-fa="تلگرام"
+                                data-en="Telegram">
+                                تلگرام
+                            </div>
+
+                            <div class="contact-value">
+                                @achcr.soltan
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <!-- Telegram Bot -->
+
+                    <a
+                        class="contact-link reveal"
+                        href="https://t.me/Poshtiban2025_bot"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        <div class="contact-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="contact-title"
+                                data-fa="دستیار تلگرامی"
+                                data-en="Telegram Assistant">
+                                دستیار تلگرامی
+                            </div>
+
+                            <div class="contact-value">
+                                @Poshtiban2025_bot
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <span
+                data-fa="© 2026 Ali Tabesh — طراحی و توسعه با دقت."
+                data-en="© 2026 Ali Tabesh — Designed and developed with care.">
+                © 2026 Ali Tabesh — طراحی و توسعه با دقت.
+            </span>
+
         </div>
 
-        <div
-            class="stat-label"
-            data-en="Learning Mindset"
-            data-fa="ذهنیت یادگیری">
+    </footer>
+        <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
 
-            Learning Mindset
+    <script>
 
-        </div>
+        /* =========================================
+           LANGUAGE SYSTEM
+        ========================================= */
 
-    </div>
+        const langBtn = document.getElementById("langBtn");
+        const langLabel = document.getElementById("langLabel");
+        const langCode = document.getElementById("langCode");
+        const typingText = document.getElementById("typingText");
 
+        let currentLang =
+            localStorage.getItem("site-language") || "fa";
 
-    <div class="glass stat">
 
-        <div class="stat-number">
-            360°
-        </div>
+        /* -----------------------------------------
+           Typing Text
+        ----------------------------------------- */
 
-        <div
-            class="stat-label"
-            data-en="Technical Perspective"
-            data-fa="نگاه فنی">
+        const typingTexts = {
 
-            Technical Perspective
+            fa: [
+                "مهندس نرم‌افزار.",
+                "طراح وب.",
+                "مهندس شبکه.",
+                "متخصص لینوکس.",
+                "مهندس امنیت شبکه.",
+                "متخصص تعمیرات موبایل."
+            ],
 
-        </div>
+            en: [
+                "Software Engineer.",
+                "Web Designer.",
+                "Network Engineer.",
+                "Linux Specialist.",
+                "Network Security Engineer.",
+                "Mobile Repair Specialist."
+            ]
 
-    </div>
+        };
 
 
-    <div class="glass stat">
+        let typingIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
 
-        <div class="stat-number">
-            AT
-        </div>
 
-        <div
-            class="stat-label"
-            data-en="Personal Identity"
-            data-fa="هویت شخصی">
+        function typeEffect() {
 
-            Personal Identity
+            const words = typingTexts[currentLang];
 
-        </div>
+            if (!words || words.length === 0) {
+                return;
+            }
 
-    </div>
+            const currentWord =
+                words[typingIndex % words.length];
 
-</div>
 
+            if (!deleting) {
 
-</div>
+                charIndex++;
 
-</div>
+                typingText.textContent =
+                    currentWord.substring(
+                        0,
+                        charIndex
+                    );
 
-</section>
+                if (charIndex >= currentWord.length) {
 
+                    deleting = true;
 
+                    setTimeout(
+                        typeEffect,
+                        1700
+                    );
 
-<!-- ======================================================
-     EXPERTISE
-====================================================== -->
+                    return;
+                }
 
-<section id="expertise" class="reveal">
+            } else {
 
-<div class="container">
+                charIndex--;
 
-<div class="section-header">
+                typingText.textContent =
+                    currentWord.substring(
+                        0,
+                        charIndex
+                    );
 
-    <div class="eyebrow">
-        EXPERTISE
-    </div>
+                if (charIndex <= 0) {
 
-    <h2
-        data-en="What I work with"
-        data-fa="حوزه‌های فعالیت">
+                    deleting = false;
 
-        What I work with
+                    typingIndex++;
 
-    </h2>
-
-    <p
-        data-en="A combination of software, infrastructure, security and hardware skills."
-        data-fa="ترکیبی از مهارت‌های نرم‌افزار، زیرساخت، امنیت و سخت‌افزار.">
-
-        A combination of software,
-        infrastructure, security
-        and hardware skills.
-
-    </p>
-
-</div>
-
-
-
-<div class="expertise-grid">
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        &lt;/&gt;
-    </div>
-
-    <h3
-        data-en="Software & Web"
-        data-fa="نرم‌افزار و وب">
-
-        Software & Web
-
-    </h3>
-
-    <p
-        data-en="Web development, modern interfaces, scripting and software-oriented problem solving."
-        data-fa="توسعه وب، رابط‌های مدرن، اسکریپت‌نویسی و حل مسائل نرم‌افزاری.">
-
-        Web development, modern interfaces,
-        scripting and software-oriented
-        problem solving.
-
-    </p>
-
-</div>
-
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        ◈
-    </div>
-
-    <h3
-        data-en="Networking"
-        data-fa="شبکه">
-
-        Networking
-
-    </h3>
-
-    <p
-        data-en="TCP/IP, network infrastructure, services, troubleshooting and network administration."
-        data-fa="TCP/IP، زیرساخت شبکه، سرویس‌ها، عیب‌یابی و مدیریت شبکه.">
-
-        TCP/IP, network infrastructure,
-        services, troubleshooting
-        and network administration.
-
-    </p>
-
-</div>
-
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        λ
-    </div>
-
-    <h3>
-        Linux
-    </h3>
-
-    <p
-        data-en="Linux administration, command line, SSH, Bash and system-level troubleshooting."
-        data-fa="مدیریت لینوکس، خط فرمان، SSH، Bash و عیب‌یابی در سطح سیستم.">
-
-        Linux administration,
-        command line, SSH,
-        Bash and system-level
-        troubleshooting.
-
-    </p>
-
-</div>
-
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        ◉
-    </div>
-
-    <h3
-        data-en="Cybersecurity"
-        data-fa="امنیت سایبری">
-
-        Cybersecurity
-
-    </h3>
-
-    <p
-        data-en="Security concepts, network security, system hardening and security learning projects."
-        data-fa="مفاهیم امنیت، امنیت شبکه، امن‌سازی سیستم‌ها و پروژه‌های آموزشی امنیتی.">
-
-        Security concepts,
-        network security,
-        system hardening
-        and security learning projects.
-
-    </p>
-
-</div>
-
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        ⚙
-    </div>
-
-    <h3
-        data-en="Hardware & Mobile"
-        data-fa="سخت‌افزار و موبایل">
-
-        Hardware & Mobile
-
-    </h3>
-
-    <p
-        data-en="Mobile phone repair, hardware troubleshooting, diagnostics and technical problem solving."
-        data-fa="تعمیرات موبایل، عیب‌یابی سخت‌افزار، تشخیص خرابی و حل مشکلات فنی.">
-
-        Mobile phone repair,
-        hardware troubleshooting,
-        diagnostics and technical
-        problem solving.
-
-    </p>
-
-</div>
-
-
-
-<div class="glass expertise">
-
-    <div class="icon">
-        ◆
-    </div>
-
-    <h3
-        data-en="Infrastructure"
-        data-fa="زیرساخت">
-
-        Infrastructure
-
-    </h3>
-
-    <p
-        data-en="Virtualization, system configuration, network services and technical infrastructure."
-        data-fa="مجازی‌سازی، پیکربندی سیستم، سرویس‌های شبکه و زیرساخت فنی.">
-
-        Virtualization,
-        system configuration,
-        network services
-        and technical infrastructure.
-
-    </p>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     SKILLS
-====================================================== -->
-
-<section id="skills" class="reveal">
-
-<div class="container">
-
-<div class="section-header">
-
-    <div class="eyebrow">
-        TECHNOLOGY STACK
-    </div>
-
-    <h2
-        data-en="Skills & Technologies"
-        data-fa="مهارت‌ها و فناوری‌ها">
-
-        Skills & Technologies
-
-    </h2>
-
-    <p
-        data-en="A growing technical toolkit."
-        data-fa="مجموعه مهارت‌های فنی در حال توسعه.">
-
-        A growing technical toolkit.
-
-    </p>
-
-</div>
-
-
-<div class="skills">
-
-
-    <span class="skill">HTML</span>
-    <span class="skill">CSS</span>
-    <span class="skill">JavaScript</span>
-    <span class="skill">Python</span>
-
-    <span class="skill">Linux</span>
-    <span class="skill">Bash</span>
-    <span class="skill">SSH</span>
-
-    <span class="skill">Networking</span>
-    <span class="skill">TCP/IP</span>
-    <span class="skill">DNS</span>
-    <span class="skill">DHCP</span>
-
-    <span class="skill">VLAN</span>
-    <span class="skill">Routing</span>
-    <span class="skill">Switching</span>
-
-    <span class="skill">Git</span>
-    <span class="skill">GitHub</span>
-
-    <span class="skill">Cybersecurity</span>
-    <span class="skill">Network Security</span>
-
-    <span class="skill">Web Security</span>
-
-    <span class="skill">Windows</span>
-    <span class="skill">VMware</span>
-
-    <span class="skill">System Administration</span>
-
-    <span class="skill">Hardware Troubleshooting</span>
-
-    <span class="skill">
-        Mobile Repair
-    </span>
-
-    <span class="skill">
-        Mobile Diagnostics
-    </span>
-
-    <span class="skill">
-        Web Design
-    </span>
-
-    <span class="skill">
-        Responsive Design
-    </span>
-
-    <span class="skill">
-        UI / UX
-    </span>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     CLASSIFIED PROJECTS
-====================================================== -->
-
-<section id="projects" class="reveal">
-
-<div class="container">
-
-<div class="section-header">
-
-    <div class="eyebrow">
-        CLASSIFIED
-    </div>
-
-    <h2
-        data-en="Selected Projects"
-        data-fa="پروژه‌های منتخب">
-
-        Selected Projects
-
-    </h2>
-
-    <p
-        data-en="Some work is intentionally not publicly displayed."
-        data-fa="بخشی از پروژه‌ها عمداً به صورت عمومی نمایش داده نمی‌شوند.">
-
-        Some work is intentionally
-        not publicly displayed.
-
-    </p>
-
-</div>
-
-
-
-<div class="projects-wrapper">
-
-
-<div class="projects-content">
-
-
-    <div class="project-card">
-
-        <h3>
-            █████████
-        </h3>
-
-        <p>
-            █████████████████████████
-            █████████████████████
-        </p>
-
-    </div>
-
-
-    <div class="project-card">
-
-        <h3>
-            █████████
-        </h3>
-
-        <p>
-            █████████████████████████
-            █████████████████████
-        </p>
-
-    </div>
-
-
-    <div class="project-card">
-
-        <h3>
-            █████████
-        </h3>
-
-        <p>
-            █████████████████████████
-            █████████████████████
-        </p>
-
-    </div>
-
-
-</div>
-
-
-
-<div class="classified-overlay">
-
-
-    <div class="lock">
-        🔐
-    </div>
-
-
-    <h3
-        data-en="Project Details — Restricted"
-        data-fa="جزئیات پروژه‌ها — محدود">
-
-        Project Details — Restricted
-
-    </h3>
-
-
-    <p
-        data-en="Detailed information about selected projects is intentionally withheld. The projects and their contents belong to their respective owners and government organizations, and public disclosure is not authorized."
-        data-fa="اطلاعات و جزئیات برخی از پروژه‌ها عمداً منتشر نمی‌شود. محتوای این پروژه‌ها متعلق به صاحبان پروژه و سازمان‌های دولتی مربوطه است و مجوز انتشار عمومی آن‌ها وجود ندارد.">
-
-        Detailed information about selected projects
-        is intentionally withheld. The projects and
-        their contents belong to their respective
-        owners and government organizations, and
-        public disclosure is not authorized.
-
-    </p>
-
-
-    <div class="classified-tag">
-
-        CLASSIFIED / PRIVATE
-
-    </div>
-
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     CONTACT
-====================================================== -->
-
-<section id="contact" class="reveal">
-
-<div class="container">
-
-<div class="glass contact">
-
-
-    <div class="eyebrow">
-        CONTACT
-    </div>
-
-
-    <h2
-        data-en="Let's build something."
-        data-fa="بیایید چیزی بسازیم.">
-
-        Let's build something.
-
-    </h2>
-
-
-    <p
-        data-en="For collaboration, technical discussions or selected opportunities, feel free to reach out."
-        data-fa="برای همکاری، گفتگوهای فنی یا پروژه‌های منتخب می‌توانید با من در ارتباط باشید.">
-
-        For collaboration,
-        technical discussions
-        or selected opportunities,
-        feel free to reach out.
-
-    </p>
-
-
-    <div class="contact-buttons">
-
-
-        <a
-            class="btn btn-primary"
-            href="https://t.me/achcr.soltan"
-            target="_blank">
-
-            Telegram
-
-        </a>
-
-
-        <a
-            class="btn"
-            href="https://t.me/Poshtiban2025_bot"
-            target="_blank">
-
-            Support Bot
-
-        </a>
-
-
-    </div>
-
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
-<footer>
-
-<div class="container">
-
-    <span>
-        ©
-    </span>
-
-    <span id="year"></span>
-
-    <strong class="gradient">
-        ali.tabesh
-    </strong>
-
-    <span>
-        —
-    </span>
-
-    <span
-        data-en="Technology • Engineering • Security"
-        data-fa="فناوری • مهندسی • امنیت">
-
-        Technology • Engineering • Security
-
-    </span>
-
-</div>
-
-</footer>
-
-
-
-<script>
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-const body =
-    document.body;
-
-const langBtn =
-    document.getElementById(
-        "langBtn"
-    );
-
-
-function setLanguage(lang){
-
-    const fa =
-        lang === "fa";
-
-
-    body.classList.toggle(
-        "fa",
-        fa
-    );
-
-
-    body.setAttribute(
-        "lang",
-        fa ? "fa" : "en"
-    );
-
-
-    body.setAttribute(
-        "dir",
-        fa ? "rtl" : "ltr"
-    );
-
-
-    langBtn.textContent =
-        fa ? "EN" : "FA";
-
-
-    document
-        .querySelectorAll("[data-en]")
-        .forEach(el => {
-
-            el.textContent =
-                fa
-                    ? el.dataset.fa
-                    : el.dataset.en;
-
-        });
-
-
-    localStorage.setItem(
-        "site-language",
-        lang
-    );
-
-}
-
-
-langBtn.addEventListener(
-    "click",
-    () => {
-
-        const current =
-            body.classList.contains("fa")
-                ? "fa"
-                : "en";
-
-        setLanguage(
-            current === "fa"
-                ? "en"
-                : "fa"
-        );
-
-    }
-);
-
-
-setLanguage(
-    localStorage.getItem(
-        "site-language"
-    ) || "en"
-);
-
-
-/* =========================================================
-   YEAR
-========================================================= */
-
-document.getElementById(
-    "year"
-).textContent =
-    new Date().getFullYear();
-
-
-/* =========================================================
-   TYPING EFFECT
-========================================================= */
-
-const typing =
-    document.getElementById(
-        "typing"
-    );
-
-
-const textsEN = [
-
-    "Software Engineer.",
-
-    "Web Designer.",
-
-    "Network Engineer.",
-
-    "Linux Specialist.",
-
-    "Network Security Engineer.",
-
-    "Mobile Repair Specialist."
-
-];
-
-
-const textsFA = [
-
-    "مهندس نرم‌افزار.",
-
-    "طراح وب.",
-
-    "مهندس شبکه.",
-
-    "متخصص لینوکس.",
-
-    "مهندس امنیت شبکه.",
-
-    "متخصص تعمیرات موبایل."
-
-];
-
-
-let textIndex = 0;
-
-let charIndex = 0;
-
-let deleting = false;
-
-
-function typeEffect(){
-
-    const fa =
-        body.classList.contains(
-            "fa"
-        );
-
-
-    const texts =
-        fa
-            ? textsFA
-            : textsEN;
-
-
-    const current =
-        texts[textIndex];
-
-
-    if(!deleting){
-
-        typing.textContent =
-            current.substring(
-                0,
-                charIndex + 1
-            );
-
-        charIndex++;
-
-
-        if(
-            charIndex ===
-            current.length
-        ){
-
-            deleting = true;
-
-            setTimeout(
-                typeEffect,
-                1300
-            );
-
-            return;
-        }
-
-    }else{
-
-        typing.textContent =
-            current.substring(
-                0,
-                charIndex - 1
-            );
-
-        charIndex--;
-
-
-        if(charIndex === 0){
-
-            deleting = false;
-
-            textIndex =
-                (textIndex + 1)
-                % texts.length;
-
-        }
-
-    }
-
-
-    setTimeout(
-        typeEffect,
-        deleting
-            ? 45
-            : 75
-    );
-
-}
-
-
-typeEffect();
-
-
-/* =========================================================
-   MOUSE GLOW
-========================================================= */
-
-const glow =
-    document.querySelector(
-        ".mouse-glow"
-    );
-
-
-document.addEventListener(
-    "mousemove",
-    e => {
-
-        glow.style.left =
-            e.clientX + "px";
-
-        glow.style.top =
-            e.clientY + "px";
-
-    }
-);
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-const reveals =
-    document.querySelectorAll(
-        ".reveal"
-    );
-
-
-function revealOnScroll(){
-
-    const trigger =
-        window.innerHeight * .88;
-
-
-    reveals.forEach(
-        element => {
-
-            const top =
-                element.getBoundingClientRect()
-                .top;
-
-
-            if(top < trigger){
-
-                element.classList.add(
-                    "active"
-                );
+                }
 
             }
 
+
+            const speed =
+                deleting ? 45 : 85;
+
+            setTimeout(
+                typeEffect,
+                speed
+            );
+
         }
-    );
-
-}
 
 
-window.addEventListener(
-    "scroll",
-    revealOnScroll
-);
 
-revealOnScroll();
+        /* -----------------------------------------
+           Apply Language
+        ----------------------------------------- */
 
-</script>
+        function applyLanguage(lang) {
+
+            currentLang = lang;
+
+            localStorage.setItem(
+                "site-language",
+                lang
+            );
+
+
+            /* HTML direction */
+
+            document.documentElement.lang =
+                lang;
+
+            document.documentElement.dir =
+                lang === "fa"
+                    ? "rtl"
+                    : "ltr";
+
+
+            /* Body language class */
+
+            document.body.classList.toggle(
+                "en",
+                lang === "en"
+            );
+
+
+            /* Change all translated elements */
+
+            const elements =
+                document.querySelectorAll(
+                    "[data-fa][data-en]"
+                );
+
+
+            elements.forEach(element => {
+
+                element.textContent =
+                    element.getAttribute(
+                        lang === "fa"
+                            ? "data-fa"
+                            : "data-en"
+                    );
+
+            });
+
+
+            /* Language button */
+
+            if (lang === "fa") {
+
+                langLabel.textContent =
+                    "تغییر زبان";
+
+                langCode.textContent =
+                    "EN";
+
+            } else {
+
+                langLabel.textContent =
+                    "Language";
+
+                langCode.textContent =
+                    "FA";
+
+            }
+
+
+            /* Restart typing animation */
+
+            typingIndex = 0;
+
+            charIndex = 0;
+
+            deleting = false;
+
+            typingText.textContent = "";
+
+            typeEffect();
+
+        }
+
+
+
+        /* -----------------------------------------
+           Language Button
+        ----------------------------------------- */
+
+        langBtn.addEventListener(
+            "click",
+            function () {
+
+                const newLanguage =
+                    currentLang === "fa"
+                        ? "en"
+                        : "fa";
+
+                applyLanguage(
+                    newLanguage
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           MOUSE GLOW
+        ========================================= */
+
+        const mouseGlow =
+            document.getElementById(
+                "mouseGlow"
+            );
+
+
+        document.addEventListener(
+            "mousemove",
+            function (event) {
+
+                mouseGlow.style.left =
+                    event.clientX + "px";
+
+                mouseGlow.style.top =
+                    event.clientY + "px";
+
+            }
+        );
+
+
+
+        /* =========================================
+           SCROLL REVEAL
+        ========================================= */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "visible"
+                                );
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            function (element) {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           NAVBAR SCROLL EFFECT
+        ========================================= */
+
+        const navbar =
+            document.querySelector(
+                ".navbar"
+            );
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (
+                    window.scrollY > 20
+                ) {
+
+                    navbar.style.boxShadow =
+                        "0 8px 30px rgba(16,24,40,0.06)";
+
+                } else {
+
+                    navbar.style.boxShadow =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           INITIALIZE
+        ========================================= */
+
+        applyLanguage(
+            currentLang
+        );
+
+    </script>
 
 
 </body>
-
 </html>
