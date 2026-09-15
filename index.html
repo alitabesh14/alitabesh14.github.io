@@ -1,12 +1,1365 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سایت من</title>
+
+    <title>ali.tabesh | Software & Network Engineer</title>
+
+    <meta name="description"
+        content="Ali Tabesh - Software Engineer, Web Designer, Network Engineer, Linux Specialist and Network Security Engineer">
+
+    <style>
+
+        /* =========================
+           VARIABLES
+        ========================= */
+
+        :root {
+            --bg: #07070d;
+            --bg2: #0d0b18;
+
+            --purple: #9b5cff;
+            --blue: #4f8cff;
+            --cyan: #55dfff;
+
+            --text: #f5f5ff;
+            --muted: #a8a8bd;
+
+            --card: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.12);
+
+            --shadow:
+                0 20px 70px rgba(75,35,160,0.25);
+
+            --radius: 22px;
+        }
+
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(155,92,255,0.16),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(79,140,255,0.12),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    var(--bg),
+                    var(--bg2)
+                );
+
+            color: var(--text);
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BACKGROUND GRID
+        ========================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.18;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent
+                );
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+
+            width: min(1150px, 92%);
+
+            margin: auto;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+
+            position: fixed;
+
+            top: 20px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(1100px, 92%);
+
+            padding: 15px 22px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            z-index: 1000;
+
+            background:
+                rgba(10,10,20,0.72);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--purple),
+                    var(--blue),
+                    var(--cyan)
+                );
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+        }
+
+
+        nav ul {
+
+            list-style: none;
+
+            display: flex;
+
+            gap: 25px;
+        }
+
+
+        nav a {
+
+            color: var(--muted);
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+
+            color: white;
+
+            text-shadow:
+                0 0 15px var(--purple);
+        }
+
+
+        #langBtn {
+
+            border: 1px solid var(--border);
+
+            background: rgba(255,255,255,0.05);
+
+            color: white;
+
+            padding: 8px 14px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        #langBtn:hover {
+
+            border-color: var(--purple);
+
+            box-shadow:
+                0 0 20px rgba(155,92,255,0.4);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-top: 100px;
+        }
+
+
+        .hero-grid {
+
+            display: grid;
+
+            grid-template-columns: 1.2fr 0.8fr;
+
+            align-items: center;
+
+            gap: 60px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 999px;
+
+            color: var(--cyan);
+
+            background:
+                rgba(85,223,255,0.05);
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(45px, 7vw, 82px);
+
+            line-height: 1.05;
+
+            margin-bottom: 20px;
+        }
+
+
+        .gradient {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--purple),
+                    var(--blue),
+                    var(--cyan)
+                );
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+        }
+
+
+        .hero p {
+
+            font-size: 19px;
+
+            color: var(--muted);
+
+            line-height: 1.8;
+
+            max-width: 700px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 13px 22px;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            color: white;
+
+            border: 1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+
+        .btn-primary {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--blue)
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(100,70,255,0.25);
+        }
+
+
+        .btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(100,70,255,0.3);
+        }
+
+
+        /* =========================
+           ORB
+        ========================= */
+
+        .orb-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .orb {
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 70px;
+
+            font-weight: 900;
+
+            background:
+
+                radial-gradient(
+                    circle at 30% 30%,
+                    var(--cyan),
+                    var(--blue) 35%,
+                    var(--purple) 70%,
+                    #15052e
+                );
+
+            box-shadow:
+
+                0 0 50px
+                rgba(155,92,255,0.45),
+
+                inset 0 0 50px
+                rgba(255,255,255,0.15);
+
+            animation:
+                float 5s ease-in-out infinite;
+        }
+
+
+        @keyframes float {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-20px);
+            }
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+
+            padding: 110px 0;
+        }
+
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .section-title h2 {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .section-title p {
+
+            color: var(--muted);
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .card {
+
+            background:
+                var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding: 30px;
+
+            backdrop-filter:
+                blur(15px);
+
+            box-shadow:
+                var(--shadow);
+
+            transition:
+                0.35s;
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(155,92,255,0.45);
+
+            box-shadow:
+
+                0 25px 80px
+                rgba(90,50,200,0.25);
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+
+        .about p {
+
+            color: var(--muted);
+
+            font-size: 18px;
+
+            line-height: 2;
+        }
+
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(160px,1fr)
+                );
+
+            gap: 18px;
+        }
+
+
+        .skill {
+
+            text-align: center;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .skill:hover {
+
+            color: var(--cyan);
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        /* =========================
+           PROJECTS
+        ========================= */
+
+        .projects-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px,1fr)
+                );
+
+            gap: 22px;
+        }
+
+
+        .project h3 {
+
+            margin-bottom: 12px;
+
+            font-size: 22px;
+        }
+
+
+        .project p {
+
+            color: var(--muted);
+
+            line-height: 1.7;
+
+            margin-bottom: 20px;
+        }
+
+
+        .coming {
+
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+
+            color: var(--cyan);
+
+            background:
+                rgba(85,223,255,0.08);
+
+            border:
+                1px solid
+                rgba(85,223,255,0.2);
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-box {
+
+            text-align: center;
+
+            max-width: 750px;
+
+            margin: auto;
+        }
+
+
+        .contact-box p {
+
+            color: var(--muted);
+
+            margin-bottom: 30px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            padding: 35px 0;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            border-top:
+                1px solid var(--border);
+        }
+
+
+        /* =========================
+           PERSIAN
+        ========================= */
+
+        body.fa {
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+        }
+
+
+        body.fa .hero h1 {
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav ul {
+
+                display: none;
+            }
+
+
+            .hero-grid {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+
+            .hero p {
+
+                margin-left: auto;
+
+                margin-right: auto;
+            }
+
+
+            .buttons {
+
+                justify-content: center;
+            }
+
+
+            .orb {
+
+                width: 220px;
+
+                height: 220px;
+
+                font-size: 55px;
+            }
+
+
+            section {
+
+                padding: 80px 0;
+            }
+        }
+
+    </style>
 </head>
+
+
 <body>
-    <h1>سلام، به سایت من خوش آمدید!</h1>
-    <p>این اولین سایت من است که با GitHub Pages منتشر شده.</p>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            ali.tabesh
+        </div>
+
+
+        <ul>
+
+            <li>
+                <a href="#about"
+                   data-en="About"
+                   data-fa="درباره من">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="#skills"
+                   data-en="Skills"
+                   data-fa="مهارت‌ها">
+                    Skills
+                </a>
+            </li>
+
+            <li>
+                <a href="#projects"
+                   data-en="Projects"
+                   data-fa="پروژه‌ها">
+                    Projects
+                </a>
+            </li>
+
+            <li>
+                <a href="#contact"
+                   data-en="Contact"
+                   data-fa="تماس">
+                    Contact
+                </a>
+            </li>
+
+        </ul>
+
+
+        <button id="langBtn">
+            FA
+        </button>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <div class="hero-grid">
+
+
+                <div>
+
+                    <span class="badge"
+                          data-en="Welcome to my digital space"
+                          data-fa="به فضای دیجیتال من خوش آمدید">
+                        Welcome to my digital space
+                    </span>
+
+
+                    <h1>
+
+                        <span class="gradient">
+                            ali.tabesh
+                        </span>
+
+                    </h1>
+
+
+                    <h2
+                        data-en="Software Engineer. Web Designer. Network Engineer. Linux Specialist. Network Security Engineer."
+                        data-fa="مهندس نرم‌افزار. طراح وب. مهندس شبکه. متخصص لینوکس. مهندس امنیت شبکه.">
+
+                        Software Engineer.
+                        Web Designer.
+                        Network Engineer.
+                        Linux Specialist.
+                        Network Security Engineer.
+
+                    </h2>
+
+
+                    <p
+                        data-en="I'm Ali Tabesh. How can I help you?"
+                        data-fa="علی تابش هستم، چه کمکی از دستم برمیاد؟">
+
+                        I'm Ali Tabesh.
+                        How can I help you?
+
+                    </p>
+
+
+                    <div class="buttons">
+
+                        <a
+                            href="#projects"
+                            class="btn btn-primary"
+                            data-en="View Projects"
+                            data-fa="مشاهده پروژه‌ها">
+
+                            View Projects
+
+                        </a>
+
+
+                        <a
+                            href="#contact"
+                            class="btn"
+                            data-en="Contact Me"
+                            data-fa="ارتباط با من">
+
+                            Contact Me
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="orb-container">
+
+                    <div class="orb">
+                        AT
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2
+                    data-en="About Me"
+                    data-fa="درباره من">
+
+                    About Me
+
+                </h2>
+
+                <p
+                    data-en="A little introduction"
+                    data-fa="یک معرفی کوتاه">
+
+                    A little introduction
+
+                </p>
+
+            </div>
+
+
+            <div class="card about">
+
+                <p
+                    data-en="I’m Ali Tabesh, interested in software engineering, modern web design, computer networks, Linux and network security. This portfolio is a place to present my skills, projects and the technologies I work with."
+                    data-fa="من علی تابش هستم و به مهندسی نرم‌افزار، طراحی وب مدرن، شبکه‌های کامپیوتری، لینوکس و امنیت شبکه علاقه دارم. این سایت برای معرفی مهارت‌ها، پروژه‌ها و فناوری‌هایی است که روی آن‌ها کار می‌کنم.">
+
+                    I’m Ali Tabesh, interested in software engineering,
+                    modern web design, computer networks, Linux and
+                    network security.
+
+                    This portfolio is a place to present my skills,
+                    projects and the technologies I work with.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SKILLS
+    ========================= -->
+
+    <section id="skills">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2
+                    data-en="Skills"
+                    data-fa="مهارت‌ها">
+
+                    Skills
+
+                </h2>
+
+                <p
+                    data-en="Technologies and areas I work with"
+                    data-fa="فناوری‌ها و حوزه‌هایی که با آن‌ها کار می‌کنم">
+
+                    Technologies and areas I work with
+
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <div class="card skill">
+                    HTML
+                </div>
+
+                <div class="card skill">
+                    CSS
+                </div>
+
+                <div class="card skill">
+                    JavaScript
+                </div>
+
+                <div class="card skill">
+                    Python
+                </div>
+
+                <div class="card skill">
+                    Linux
+                </div>
+
+                <div class="card skill">
+                    Networking
+                </div>
+
+                <div class="card skill">
+                    Git
+                </div>
+
+                <div class="card skill">
+                    GitHub
+                </div>
+
+                <div class="card skill">
+                    Cybersecurity
+                </div>
+
+                <div class="card skill">
+                    Network Security
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PROJECTS
+    ========================= -->
+
+    <section id="projects">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2
+                    data-en="Projects"
+                    data-fa="پروژه‌ها">
+
+                    Projects
+
+                </h2>
+
+                <p
+                    data-en="Things I'm building and learning"
+                    data-fa="چیزهایی که می‌سازم و یاد می‌گیرم">
+
+                    Things I'm building and learning
+
+                </p>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+
+                <div class="card project">
+
+                    <h3>
+                        Web Projects
+                    </h3>
+
+                    <p
+                        data-en="Modern responsive websites and web interfaces."
+                        data-fa="ساخت سایت‌های مدرن و واکنش‌گرا و رابط‌های وب.">
+
+                        Modern responsive websites
+                        and web interfaces.
+
+                    </p>
+
+                    <span class="coming">
+                        COMING SOON
+                    </span>
+
+                </div>
+
+
+
+                <div class="card project">
+
+                    <h3>
+                        Network & Linux
+                    </h3>
+
+                    <p
+                        data-en="Networking, Linux administration and infrastructure projects."
+                        data-fa="پروژه‌های شبکه، مدیریت لینوکس و زیرساخت.">
+
+                        Networking, Linux administration
+                        and infrastructure projects.
+
+                    </p>
+
+                    <span class="coming">
+                        COMING SOON
+                    </span>
+
+                </div>
+
+
+
+                <div class="card project">
+
+                    <h3>
+                        Security
+                    </h3>
+
+                    <p
+                        data-en="Cybersecurity and network-security learning projects."
+                        data-fa="پروژه‌های آموزشی امنیت سایبری و امنیت شبکه.">
+
+                        Cybersecurity and network-security
+                        learning projects.
+
+                    </p>
+
+                    <span class="coming">
+                        COMING SOON
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2
+                    data-en="Let's Connect"
+                    data-fa="ارتباط با من">
+
+                    Let's Connect
+
+                </h2>
+
+                <p
+                    data-en="Have an idea or want to talk?"
+                    data-fa="ایده‌ای دارید یا می‌خواهید صحبت کنیم؟">
+
+                    Have an idea or want to talk?
+
+                </p>
+
+            </div>
+
+
+            <div class="card contact-box">
+
+                <p
+                    data-en="You can contact me through Telegram or use my support bot."
+                    data-fa="می‌توانید از طریق تلگرام با من ارتباط بگیرید یا از ربات پشتیبانی استفاده کنید.">
+
+                    You can contact me through Telegram
+                    or use my support bot.
+
+                </p>
+
+
+                <div class="buttons">
+
+                    <a
+                        class="btn btn-primary"
+                        href="https://t.me/achcr.soltan"
+                        target="_blank">
+
+                        Telegram
+
+                    </a>
+
+
+                    <a
+                        class="btn"
+                        href="https://t.me/Poshtiban2025_bot"
+                        target="_blank">
+
+                        Support Bot
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © <span id="year"></span>
+        ali.tabesh
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const body =
+            document.body;
+
+        const langBtn =
+            document.getElementById("langBtn");
+
+
+        function setLanguage(lang) {
+
+            const isPersian =
+                lang === "fa";
+
+
+            body.classList.toggle(
+                "fa",
+                isPersian
+            );
+
+
+            body.setAttribute(
+                "lang",
+                isPersian
+                    ? "fa"
+                    : "en"
+            );
+
+
+            body.setAttribute(
+                "dir",
+                isPersian
+                    ? "rtl"
+                    : "ltr"
+            );
+
+
+            langBtn.textContent =
+                isPersian
+                    ? "EN"
+                    : "FA";
+
+
+            document
+                .querySelectorAll("[data-en]")
+                .forEach(element => {
+
+                    element.textContent =
+                        isPersian
+                            ? element.dataset.fa
+                            : element.dataset.en;
+
+                });
+
+
+            localStorage.setItem(
+                "site-language",
+                lang
+            );
+
+        }
+
+
+        langBtn.addEventListener(
+            "click",
+            () => {
+
+                const current =
+                    body.classList.contains("fa")
+                        ? "fa"
+                        : "en";
+
+                setLanguage(
+                    current === "fa"
+                        ? "en"
+                        : "fa"
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "year"
+        ).textContent =
+            new Date().getFullYear();
+
+
+        const savedLanguage =
+            localStorage.getItem(
+                "site-language"
+            ) || "en";
+
+
+        setLanguage(
+            savedLanguage
+        );
+
+    </script>
+
+
 </body>
+
 </html>
